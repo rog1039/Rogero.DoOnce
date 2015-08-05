@@ -29,6 +29,18 @@ namespace Rogero.DoOnce
             return shouldDo;
         }
 
+        /// <summary>
+        ///     Returns true if the method has never been called before, returns false if the method has been called.
+        /// </summary>
+        /// <returns></returns>
+        bool ShouldDo()
+        {
+            if (Interlocked.Exchange(ref _isDone, 1) == 0)
+                return true;
+            else
+                return false;
+        }
+
         void PerformAction(Action action, bool resetOnException)
         {
             try
@@ -43,18 +55,6 @@ namespace Rogero.DoOnce
                 }
                 ExceptionHandler.Handle(exception);
             }
-        }
-
-        /// <summary>
-        ///     Returns true if the method has never been called before, returns false if the method has been called.
-        /// </summary>
-        /// <returns></returns>
-        bool ShouldDo()
-        {
-            if (Interlocked.Exchange(ref _isDone, 1) == 0)
-                return true;
-            else
-                return false;
         }
 
         /// <summary>
