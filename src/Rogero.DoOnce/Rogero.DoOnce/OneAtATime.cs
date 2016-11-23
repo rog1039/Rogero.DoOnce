@@ -35,7 +35,7 @@ namespace Rogero.DoOnce
         }
     }
 
-    public class PermissionResponse
+    public class PermissionResponse : IDisposable
     {
         public bool PermissionGranted { get; }
         public bool PermissionDenied => !PermissionGranted;
@@ -57,6 +57,11 @@ namespace Rogero.DoOnce
         public void ReleaseHold()
         {
             _action();
+        }
+
+        public void Dispose()
+        {
+            ReleaseHold();
         }
     }
 }
