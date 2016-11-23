@@ -38,6 +38,7 @@ namespace Rogero.DoOnce
     public class PermissionResponse
     {
         public bool PermissionGranted { get; }
+        public bool PermissionDenied => !PermissionGranted;
 
         private readonly Action _action;
 
