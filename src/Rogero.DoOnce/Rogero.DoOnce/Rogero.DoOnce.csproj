@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DoOnce.cs" />
     <Compile Include="ExceptionHandler.cs" />
+    <Compile Include="OneAtATime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
